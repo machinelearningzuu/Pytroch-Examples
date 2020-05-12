@@ -1,6 +1,7 @@
 import torch
 import numpy as np
 import pandas as pd
+from torch.utils.data import TensorDataset
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
@@ -28,4 +29,11 @@ def get_data():
     Xtest  = torch.Tensor(Xtest)
     Ytest  = torch.Tensor(Ytest)
 
-    return Xtrain, Xtest, Ytrain, Ytest
+    ##########################
+    #only use when run regression_nn.py
+    train_data = TensorDataset(Xtrain, Ytrain)
+    test_data = TensorDataset(Xtest, Ytest)
+    return train_data, test_data
+    #########################
+
+    # return Xtrain, Xtest, Ytrain, Ytest
